@@ -2,7 +2,6 @@ import 'dotenv/config'
 import 'reflect-metadata'
 import 'express-async-errors'
 import '@shared/di'
-import '@infra/dynamodb/DynamoDBClient'
 
 import cors from 'cors'
 import routes from './routes'

@@ -1,4 +1,4 @@
 import app from './presentation/http/App'
-import './infra/dynamodb/migrations'
+import '@infra/typeorm'
 
 app.listen()

@@ -4,7 +4,7 @@ import {
   CustomersRepositorySym,
   ICustomersRepository,
 } from '../infra/repositories/ICustomersRepository'
-import { CustomersRepository } from '../infra/dynamodb/repositories/CustomersRepository'
+import { CustomersRepository } from '../infra/typeorm/repositories/CustomersRepository'
 
 container.registerSingleton<ICustomersRepository>(
   CustomersRepositorySym,

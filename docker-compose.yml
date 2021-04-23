@@ -1,11 +1,8 @@
 version: "3.3"
 services:
-  localstack:
-    container_name: localstack
-    image: localstack/localstack
+  mongodb:
+    image: mongo:latest
     ports:
-      - 4566:4566
-    environment:
-      - SERVICES=dynamodb
+      - "27017:27017"
     volumes:
-      - ./tmp/localstack/data:/tmp/localstack/data
+      - ./tmp/mongo:/data/db
