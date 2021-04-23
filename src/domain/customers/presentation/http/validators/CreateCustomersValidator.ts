@@ -12,7 +12,7 @@ export class CreateCustomersValidator {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
       email: Yup.string().required(),
-      passport: Yup.string()
+      password: Yup.string()
         .length(8, 'The password must be at least 8 characters.')
         .required(),
     })

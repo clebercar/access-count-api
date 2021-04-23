@@ -1,5 +1,4 @@
 import { injectable, inject } from 'tsyringe'
-import { Customer } from '../entities/Customer'
 import { AppError } from '@/presentation/http/errors/AppError'
 
 import {
@@ -20,10 +19,10 @@ export class CreateCustomerService {
     private customersRepository: ICustomersRepository
   ) {}
 
-  public async execute({ name, email, password }: IRequest): Promise<Customer> {
-    const customerExist = await this.customersRepository.findByEmail(email)
+  public async execute({ name, email, password }: IRequest) {
+    const customerExists = await this.customersRepository.findByEmail(email)
 
-    if (customerExist)
+    if (customerExists)
       throw new AppError({
         statusCode: 409,
         code: 'ALREADY_EXISTS',
