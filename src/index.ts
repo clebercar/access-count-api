@@ -1,4 +1,4 @@
-import app from './presentation/http/App'
+import { boostrap } from './presentation/http/App'
 import '@infra/typeorm'
 
-app.listen()
+boostrap()

@@ -9,12 +9,12 @@ import express, { Express, Response } from 'express'
 import globalHandlingErrors from './middlewares/globalHandlingErrors'
 
 class App {
-  public readonly app: Express
+  public readonly application: Express
 
   constructor() {
-    this.app = express()
-    this.app.use(express.json())
-    this.app.use(
+    this.application = express()
+    this.application.use(express.json())
+    this.application.use(
       cors({
         origin: '*',
         optionsSuccessStatus: 200,
@@ -26,26 +26,28 @@ class App {
   }
 
   private setupRoutes() {
-    this.app.get('/v1/status', (_, res: Response) => {
+    this.application.get('/v1/status', (_, res: Response) => {
       res.json({
         timestamp: new Date(),
       })
     })
 
-    this.app.use(routes)
+    this.application.use(routes)
   }
 
   private setupErrors() {
-    this.app.use(globalHandlingErrors)
+    this.application.use(globalHandlingErrors)
   }
 
-  public listen() {
+  public boostrap() {
     const port = process.env.PORT || 80
 
-    this.app.listen(port, async () => {
+    this.application.listen(port, async () => {
       console.log(`⚡ Server running on port ${port}`)
     })
   }
 }
 
-export default new App()
+const { application, boostrap } = new App()
+
+export { application, boostrap }
