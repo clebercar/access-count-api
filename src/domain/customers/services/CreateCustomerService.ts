@@ -1,4 +1,5 @@
 import { injectable, inject } from 'tsyringe'
+import { CustomerMap } from '../mappers/CustomerMap'
 import { AppError } from '@/presentation/http/errors/AppError'
 
 import {
@@ -35,6 +36,6 @@ export class CreateCustomerService {
       password,
     })
 
-    return customer
+    return CustomerMap.toDomain(customer)
   }
 }

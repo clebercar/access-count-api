@@ -9,7 +9,7 @@ export class FakeCustomerRepository implements ICustomersRepository {
   public async create(data: ICreateCustomerDTO): Promise<Customer> {
     const customer = new Customer()
 
-    Object.assign(customer, { id: new ObjectID(), data })
+    Object.assign(customer, { id: new ObjectID(), ...data })
 
     this.customers.push(customer)
 
