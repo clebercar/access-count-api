@@ -18,7 +18,8 @@ export default async function globalHandlingErrors(
   console.error('Internal server error:', error)
 
   return res.status(500).json({
+    status: 500,
     code: 'APPLICATION_ERROR',
-    message: 'Internal server error.',
+    message: 'Internal server error',
   })
 }
