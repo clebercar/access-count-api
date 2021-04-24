@@ -12,4 +12,6 @@ customersRouter.post(
   customersController.create
 )
 
+customersRouter.get('/:id', customersController.show)
+
 export default customersRouter

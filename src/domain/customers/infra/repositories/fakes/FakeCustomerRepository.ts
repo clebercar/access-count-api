@@ -19,4 +19,8 @@ export class FakeCustomerRepository implements ICustomersRepository {
   public async findByEmail(email: string): Promise<Customer | undefined> {
     return this.customers.find((customer) => customer.email === email)
   }
+
+  public async findById(id: string): Promise<Customer | undefined> {
+    return this.customers.find((customer) => String(customer.id) === id)
+  }
 }

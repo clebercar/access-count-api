@@ -33,4 +33,10 @@ export class CustomersRepository implements ICustomersRepository {
 
     return customer
   }
+
+  public async findById(id: string): Promise<Customer | undefined> {
+    const customer = await this.ormRepository.findOne(id)
+
+    return customer
+  }
 }
