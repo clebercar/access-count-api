@@ -5,5 +5,5 @@
     "ts": "node -r tsconfig-paths/register --inspect --require ts-node/register"
   },
   "watch": ["src/"],
-  "ext": "js,json,ts"
+  "ext": "js,json,ts,yaml"
 }

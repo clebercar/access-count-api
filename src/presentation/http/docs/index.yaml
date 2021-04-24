@@ -1,0 +1,141 @@
+openapi: 3.0.0
+info:
+  title: Access Count API
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080/v1
+    description: Server local
+
+paths:
+  /customers:
+    post:
+      tags:
+        - Customers
+      summary: Create customers.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Arthur Dent
+                email:
+                  type: string
+                  example: arthurdent@mail.com
+                password:
+                  type: string
+                  example: 12345678
+      responses:
+        '201':
+          description: Cliente cadastrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 60835b174b045910e47a5324
+                  name:
+                    type: string
+                    example: Arthur Dent
+                  email:
+                    type: string
+                    example: arthurdent@mail.com
+        '401':
+          description: Campos obrigátorios não informados
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  code:
+                    type: string
+                    example: INVALID_PARAMETERS
+                  message:
+                    type: string
+                    example: password is a required field
+        '409':
+          description: E-mail já cadastrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 409
+                  code:
+                    type: string
+                    example: ALREADY_EXISTS
+                  message:
+                    type: string
+                    example: Customer already registered
+  /customers/{id}:
+      get:
+        tags:
+          - Customers
+        summary: Customer Profile
+        parameters:
+          - name: id
+            in: path
+            required: true
+            description: Customer ID(Mongodb ObjectID)
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Cliente cadastrado
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 60835b174b045910e47a5324
+                    name:
+                      type: string
+                      example: Arthur Dent
+                    email:
+                      type: string
+                      example: arthurdent@mail.com
+          '404':
+            description: Campos obrigátorios não informados
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    statusCode:
+                      type: integer
+                      example: 404
+                    code:
+                      type: string
+                      example: NOT_FOUND
+                    message:
+                      type: string
+                      example: Customer not found
+          '500':
+            description: Erro inesperado
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    statusCode:
+                      type: integer
+                      example: 500
+                    code:
+                      type: string
+                      example: APPLICATION_ERROR
+                    message:
+                      type: string
+                      example: Internal server error

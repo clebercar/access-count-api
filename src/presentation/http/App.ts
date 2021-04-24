@@ -7,6 +7,7 @@ import cors from 'cors'
 import routes from './routes'
 import express, { Express, Response } from 'express'
 import globalHandlingErrors from './middlewares/globalHandlingErrors'
+import { swaggerConfiguration } from './docs/swaggerConfiguration'
 
 class App {
   public readonly application: Express
@@ -26,6 +27,8 @@ class App {
   }
 
   private setupRoutes() {
+    swaggerConfiguration(this.application)
+
     this.application.get('/v1/status', (_, res: Response) => {
       res.json({
         timestamp: new Date(),
