@@ -6,11 +6,8 @@ if(process.env.NODE_ENV === 'production')
 module.exports = {
   name: "default",
   type: "mongodb",
-  host: process.env.DB_HOST,
-  username: process.env.DB_USERNAME || "",
-  password: process.env.DB_PASSWORD || "",
-  port: Number(process.env.DB_PORT),
-  database: process.env.DB_NAME,
+  url: process.env.MONGO_URL,
+  useNewUrlParser: true,
   useUnifiedTopology: true,
   entities
 }
