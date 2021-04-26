@@ -53,6 +53,4 @@ class App {
   }
 }
 
-const { application, bootstrap } = new App()
-
-export { application, bootstrap }
+export default new App()

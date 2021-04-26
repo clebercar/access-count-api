@@ -1,6 +1,6 @@
 import { container } from 'tsyringe'
 import request, { Response } from 'supertest'
-import { application } from '@presentation/http/App'
+import App from '@presentation/http/App'
 import { IncrementAccessesService } from '@domain/metrics/services/IncrementAccessesService'
 import { TotalNumberOfAccessesService } from '@domain/metrics/services/TotalNumberOfAccessesService'
 import { FakeAccessesCountProvider } from '@shared/providers/AccessesCountProvider/fakes/FakeAccessesCountProvider'
@@ -17,7 +17,7 @@ describe('Given AccessesController', () => {
             () => new IncrementAccessesService(new FakeAccessesCountProvider())
           )
 
-        subject = await request(application).post('/v1/accesses')
+        subject = await request(App.application).post('/v1/accesses')
       })
 
       it('should be able to status 201', async () => {
@@ -40,7 +40,7 @@ describe('Given AccessesController', () => {
       let subject: Response
 
       beforeAll(async () => {
-        subject = await request(application).get(`/v1/accesses`)
+        subject = await request(App.application).get(`/v1/accesses`)
       })
 
       it('should be able to status 200', () => {

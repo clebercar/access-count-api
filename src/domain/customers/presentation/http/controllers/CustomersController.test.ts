@@ -1,6 +1,6 @@
 import { container } from 'tsyringe'
 import request, { Response } from 'supertest'
-import { application } from '@presentation/http/App'
+import App from '@presentation/http/App'
 import { CreateCustomerService } from '@domain/customers/services/CreateCustomerService'
 import { CustomerProfileService } from '@domain/customers/services/CustomerProfileService'
 import { FakeCustomerRepository } from '@domain/customers/infra/repositories/fakes/FakeCustomerRepository'
@@ -27,7 +27,7 @@ describe('Given CustomersController', () => {
       let subject: Response
 
       beforeAll(async () => {
-        subject = await request(application)
+        subject = await request(App.application)
           .post('/v1/customers')
           .send(customerParameters)
       })
@@ -51,7 +51,7 @@ describe('Given CustomersController', () => {
       beforeAll(async () => {
         await fakeCustomerRepository.create(customerParameters)
 
-        subject = await request(application)
+        subject = await request(App.application)
           .post('/v1/customers')
           .send(customerParameters)
       })
@@ -85,7 +85,9 @@ describe('Given CustomersController', () => {
       beforeAll(async () => {
         const customer = await fakeCustomerRepository.create(customerParameters)
 
-        subject = await request(application).get(`/v1/customers/${customer.id}`)
+        subject = await request(App.application).get(
+          `/v1/customers/${customer.id}`
+        )
       })
 
       it('should be able to status 200', async () => {
@@ -105,7 +107,7 @@ describe('Given CustomersController', () => {
       let subject: Response
 
       beforeAll(async () => {
-        subject = await request(application).get(
+        subject = await request(App.application).get(
           `/v1/customers/non-existing-customer-id`
         )
       })

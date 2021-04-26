@@ -1,4 +1,4 @@
-import { bootstrap } from './presentation/http/App'
+import App from './presentation/http/App'
 import '@infra/typeorm'
 
-bootstrap()
+App.bootstrap()
