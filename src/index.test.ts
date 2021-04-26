@@ -1,5 +1,5 @@
 const AppMock = {
-  bootstrap: () => 'opa',
+  bootstrap: () => jest.fn,
   application: () => jest.fn,
 }
 
