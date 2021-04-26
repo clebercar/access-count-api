@@ -6,6 +6,7 @@ import '@shared/di'
 import cors from 'cors'
 import routes from './routes'
 import express, { Express, Response } from 'express'
+import rateLimiter from './middlewares/rateLimiter'
 import globalHandlingErrors from './middlewares/globalHandlingErrors'
 import { swaggerConfiguration } from './docs/swaggerConfiguration'
 
@@ -22,6 +23,7 @@ class App {
       })
     )
 
+    this.application.use(rateLimiter)
     this.setupRoutes()
     this.setupErrors()
   }
