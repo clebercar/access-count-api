@@ -16,6 +16,7 @@ module.exports = {
   collectCoverageFrom: [
     '<rootDir>/**/*.ts',
     '!<rootDir>/domain/**/infra/typeorm/repositories/*.ts',
+    '!<rootDir>/shared/providers/**/fakes/*.ts',
     '!<rootDir>/infra/typeorm/**/*.ts',
   ],
   modulePathIgnorePatterns: ['<rootDir>/@types'],
