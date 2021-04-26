@@ -1,0 +1,14 @@
+[template]
+src = ".env.tpl"
+dest = ".env"
+keys = [
+  "/app_secret",
+  "/mongo_url",
+  "/aws_access_key_id",
+  "/aws_secret_access_key",
+  "/aws_region",
+  "/count_api_url",
+  "/count_api_namespace",
+  "/count_api_secret_key",
+  "/enable_docs",
+]
