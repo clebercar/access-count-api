@@ -12,7 +12,7 @@ interface IAppError {
   code?: keyof typeof ECode
 }
 
-export class AppError {
+export class AppError extends Error {
   public readonly code: string
 
   public readonly message: string
@@ -24,6 +24,8 @@ export class AppError {
     statusCode = 400,
     code = 'APPLICATION_ERROR',
   }: IAppError) {
+    super()
+
     this.code = code
     this.message = message
     this.statusCode = statusCode
