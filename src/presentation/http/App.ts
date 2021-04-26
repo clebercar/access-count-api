@@ -44,7 +44,7 @@ class App {
     this.application.use(globalHandlingErrors)
   }
 
-  public boostrap() {
+  public bootstrap() {
     const port = process.env.PORT || 80
 
     this.application.listen(port, async () => {
@@ -53,6 +53,6 @@ class App {
   }
 }
 
-const { application, boostrap } = new App()
+const { application, bootstrap } = new App()
 
-export { application, boostrap }
+export { application, bootstrap }
